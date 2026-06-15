@@ -8,7 +8,7 @@ const REPAS = [
     { key: 'repas_plus', emoji: '➕' },
 ];
 
-const PROXY = 'https://corsproxy.io/?';
+const PROXY = '/proxy.php?url=';
 
 const OBJECTIFS_DEFAUT = { kcal: 2000, proteines: 90, glucides: 250, lipides: 70 };
 const EMOJIS_PROFIL = ['🧑', '👩', '👨', '🧒', '👧', '👦', '🧓', '👵', '👴', '🐱', '🐶', '🦊', '🐼', '🦉'];
@@ -352,6 +352,7 @@ function mapProduit(p) {
         },
     };
 }
+
 async function chercherParCodeBarre(code) {
     try {
         const res = await fetch(PROXY + encodeURIComponent('https://world.openfoodfacts.org/api/v2/product/' + encodeURIComponent(code)
