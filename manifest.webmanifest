@@ -1,0 +1,21 @@
+{
+    "name": "Mon Assiette V2 — Suivi nutrition",
+    "short_name": "Assiette V2",
+    "description": "Suivez ce que vous mangez chaque jour. 100% local, sans compte.",
+    "lang": "fr",
+    "start_url": "./index.html",
+    "scope": "./",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#fff7ee",
+    "theme_color": "#e8762a",
+    "categories": ["health", "lifestyle", "food"],
+    "icons": [
+        {
+            "src": "icon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}

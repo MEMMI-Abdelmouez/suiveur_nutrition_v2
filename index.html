@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1">
+    <title>Mon Assiette V2 — Suivi nutrition</title>
+    <meta name="description" content="Suivez ce que vous mangez chaque jour. 100% local, sans compte.">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#e8762a">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon.svg">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Mon Assiette">
+
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+    <header class="appbar">
+        <div class="appbar__brand">🥗 <span data-i18n="appName">Mon Assiette</span><sup class="v2tag">V2</sup></div>
+        <button class="profilechip" data-action="goto-profil" id="profilechip" type="button">
+            <span class="profilechip__emoji">🧑</span>
+            <span class="profilechip__name">Moi</span>
+        </button>
+    </header>
+
+    <main id="app">
+        <section class="view" id="view-today"></section>
+        <section class="view" id="view-add" hidden></section>
+        <section class="view" id="view-stats" hidden></section>
+        <section class="view" id="view-profil" hidden></section>
+    </main>
+
+    <nav class="tabbar">
+        <button class="tab tab--on" data-tab="today" type="button"><span class="tab__ico">📅</span><span data-i18n="tab_today">Jour</span></button>
+        <button class="tab" data-tab="add" type="button"><span class="tab__ico">🔍</span><span data-i18n="tab_add">Ajouter</span></button>
+        <button class="tab" data-tab="stats" type="button"><span class="tab__ico">📈</span><span data-i18n="tab_stats">Progrès</span></button>
+        <button class="tab" data-tab="profil" type="button"><span class="tab__ico">👤</span><span data-i18n="tab_profil">Profil</span></button>
+    </nav>
+
+    <div class="sheet" id="sheet" hidden>
+        <div class="sheet__backdrop" data-action="close-sheet"></div>
+        <div class="sheet__panel" id="sheet-panel" role="dialog" aria-modal="true"></div>
+    </div>
+
+    <div class="toast" id="toast" hidden></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
