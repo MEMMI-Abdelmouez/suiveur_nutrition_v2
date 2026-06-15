@@ -532,7 +532,7 @@ function renderAdd() {
         const q = e.target.value.trim();
         state.lastQuery = e.target.value;
         clearTimeout(timer);
-        if (q.length < 2) { renderResults([], false); return; }
+        if (q.length < 3) { renderResults([], false); return; }
         renderResults([], true);
         timer = setTimeout(async () => {
             try {
@@ -542,7 +542,7 @@ function renderAdd() {
             } catch {
                 if ($('#results')) $('#results').innerHTML = `<p class="muted center" style="padding:14px 0">${L().offError}</p>`;
             }
-        }, 350);
+        }, 800);
     });
     if (state.lastQuery.trim().length >= 2 && state.results.length) renderResults(state.results, false);
 }
