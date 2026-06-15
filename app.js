@@ -557,7 +557,7 @@ function renderResults(list, loading) {
     }
     box.innerHTML = list.map((p, i) => `
         <button class="result" data-action="pick" data-i="${i}">
-            ${p.image ? `<img class="result__img" src="${esc(p.image)}" alt="" loading="lazy">` : `<span class="result__img" style="display:grid;place-items:center">🍴</span>`}
+            ${p.image ? `<img class="result__img" src="${PROXY + encodeURIComponent(p.image)}" alt="" loading="lazy">` : `<span class="result__img" style="display:grid;place-items:center">🍴</span>`}
             <span style="flex:1;min-width:0">
                 <div class="result__name">${esc(p.nom)}</div>
                 <div class="result__sub">${p.marque ? esc(p.marque) + ' · ' : ''}${r0(p.per100.kcal)} ${L().perKcal100}</div>
