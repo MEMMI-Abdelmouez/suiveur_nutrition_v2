@@ -8,6 +8,8 @@ const REPAS = [
     { key: 'repas_plus', emoji: '➕' },
 ];
 
+const PROXY = 'https://corsproxy.io/?';
+
 const OBJECTIFS_DEFAUT = { kcal: 2000, proteines: 90, glucides: 250, lipides: 70 };
 const EMOJIS_PROFIL = ['🧑', '👩', '👨', '🧒', '👧', '👦', '🧓', '👵', '👴', '🐱', '🐶', '🦊', '🐼', '🦉'];
 const FACTEURS_ACTIVITE = { sed: 1.2, light: 1.375, mod: 1.55, high: 1.725, vhigh: 1.9 };
@@ -328,8 +330,8 @@ function calculerObjectifs(c) {
 
 // ---------- API Open Food Facts ----------
 async function chercherAliments(q) {
-    const url = 'https://world.openfoodfacts.org/cgi/search.pl?search_terms=' + encodeURIComponent(q)
-        + '&json=1&page_size=20&fields=product_name,brands,nutriments,image_front_small_url&lc=' + LANG;
+    const url = PROXY + encodeURIComponent('https://world.openfoodfacts.org/cgi/search.pl?search_terms=' + encodeURIComponent(q)
+        + '&json=1&page_size=20&fields=product_name,brands,nutriments,image_front_small_url&lc=' + LANG);
     const res = await fetch(url);
     if (!res.ok) throw new Error('Réseau indisponible');
     const data = await res.json();
@@ -337,6 +339,7 @@ async function chercherAliments(q) {
         .filter(p => p.product_name && num((p.nutriments || {})['energy-kcal_100g']) > 0)
         .map(mapProduit);
 }
+
 function mapProduit(p) {
     const n = p.nutriments || {};
     return {
@@ -351,8 +354,8 @@ function mapProduit(p) {
 }
 async function chercherParCodeBarre(code) {
     try {
-        const res = await fetch('https://world.openfoodfacts.org/api/v2/product/' + encodeURIComponent(code)
-            + '.json?fields=product_name,brands,nutriments,image_front_small_url');
+        const res = await fetch(PROXY + encodeURIComponent('https://world.openfoodfacts.org/api/v2/product/' + encodeURIComponent(code)
+            + '.json?fields=product_name,brands,nutriments,image_front_small_url'));
         const d = await res.json();
         if (d.status !== 1 || !d.product) { toast(L().scanNotFound); return; }
         sheetQuantite(mapProduit(d.product), { meal: state.addMeal });
