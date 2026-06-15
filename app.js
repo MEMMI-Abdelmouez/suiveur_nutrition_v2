@@ -542,7 +542,7 @@ function renderAdd() {
             } catch {
                 if ($('#results')) $('#results').innerHTML = `<p class="muted center" style="padding:14px 0">${L().offError}</p>`;
             }
-        }, 800);
+        }, 1000);
     });
     if (state.lastQuery.trim().length >= 2 && state.results.length) renderResults(state.results, false);
 }
